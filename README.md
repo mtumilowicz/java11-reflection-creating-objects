@@ -1,5 +1,9 @@
+[![Build Status](https://travis-ci.com/mtumilowicz/java11-reflection-creating-objects.svg?branch=master)](https://travis-ci.com/mtumilowicz/java11-reflection-creating-objects)
+
 # java11-reflection-creating-objects
 
+Referring my other github projects concerning constructors and
+reflection could be useful:
 * https://github.com/mtumilowicz/java11-reflection-executables
 * https://github.com/mtumilowicz/java11-reflection-constructors
 
