@@ -25,4 +25,12 @@ public class ObjectCreationTest {
             InstantiationException {
         X.class.getDeclaredConstructor(String.class, int.class).newInstance("a");
     }
+    
+    @Test(expected = IllegalAccessException.class)
+    public void create_privateConstructor() throws NoSuchMethodException,
+            IllegalAccessException,
+            InvocationTargetException,
+            InstantiationException {
+        X.class.getDeclaredConstructor().newInstance();
+    }
 }
