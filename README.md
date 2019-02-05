@@ -39,17 +39,23 @@ To create object using reflection, we have to:
     * If the constructor's declaring class is an inner class in a
       non-static context, the first argument to the constructor needs
       to be the enclosing instance: https://github.com/mtumilowicz/java11-member-inner-class-compilation
-
+    * **we can invoke only that constructors which we can call 
+        with regular java code (otherwise `IllegalAccessException`), 
+        we can bypass it using**: https://github.com/mtumilowicz/java11-deep-reflection
 # project description
 We will show how to create object using reflection.
 ```
 class X {
-    final String name;
-    final int count;
+    String name;
+    int count;
 
     X(String name, int count) {
         this.name = name;
         this.count = count;
+    }
+
+    private X() {
+
     }
 }
 ```
@@ -67,5 +73,15 @@ public void create_wrongArguments() throws NoSuchMethodException,
         InvocationTargetException,
         InstantiationException {
     X.class.getDeclaredConstructor(String.class, int.class).newInstance("a");
+}
+```
+**pay attention to accessibility:**
+```
+@Test(expected = IllegalAccessException.class)
+public void create_privateConstructor() throws NoSuchMethodException,
+        IllegalAccessException,
+        InvocationTargetException,
+        InstantiationException {
+    X.class.getDeclaredConstructor().newInstance();
 }
 ```
